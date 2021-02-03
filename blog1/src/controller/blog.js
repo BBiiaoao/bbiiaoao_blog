@@ -18,6 +18,17 @@ const getList = (author, kerword) => {
     ]
 }
 
+const getDetail=(id)=>{
+    return{
+        id: 1,
+            title: '标题A',
+            content: '内容A',
+            createTime: 1612103627787,
+            author: 'zhangsan'
+    }
+}
+
 module.exports = {
     getList,
+    getDetail
 }
