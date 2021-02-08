@@ -17,7 +17,7 @@ class BaseModel {
 class SuccessModel extends BaseModel {
     constructor(data, message) {
         super(data, message);
-        this.essno = 0;
+        this.errno = 0;
     }
 }
 
