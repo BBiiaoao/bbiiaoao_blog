@@ -15,13 +15,13 @@ const getList = (author, kerword) => {
 }
 
 const getDetail = (id) => {
-    return {
-        id: 1,
-        title: '标题A',
-        content: '内容A',
-        createTime: 1612103627787,
-        author: 'zhangsan'
-    }
+    const sql=`select * from blogs where id='${id}'`;
+    console.log(12312312312312);
+    return exec(sql).then(rows=>{
+        console.log(rows);
+        console.log(1111);
+        return rows[0];
+    })
 }
 
 const newBlog = (blogData = {}) => {

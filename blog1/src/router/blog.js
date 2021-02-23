@@ -16,14 +16,26 @@ const handleBlogRouter = (req, res) => {
     if (method === 'GET' && req.path === '/api/blog/list') {
         const author = req.query.author || '';
         const keyword = req.query.keyword || '';
-        const listData = getList(author, keyword);
-        return new SuccessModel(listData);
+        // const listData = getList(author, keyword);
+        // return new SuccessModel(listData);
+        const result = getList(author, keyword);
+        result.then(listData => {
+            console.log(new SuccessModel(listData));
+        })
+        return result.then(listData => {
+            return new SuccessModel(listData);
+        })//等于 then(data)
     }
 
     //获取博客详情
     if (method === 'GET' && req.path === '/api/blog/detail') {
-        const data = getDetail(id);
-        return new SuccessModel(data);
+        // const data = getDetail(id);
+        // return new SuccessModel(data);
+        const result=getDetail(id);
+        return result.then(data=>{
+            console.log(data);
+            return new SuccessModel(data);
+        })
     }
 
     //新建一篇博客
