@@ -64,6 +64,7 @@ const serverHandle = (req, res) => {
             }) 
             return;
         }
+        console.log(111111);
 
         //处理 user 路由
         const userData = handleUserRouter(req, res)

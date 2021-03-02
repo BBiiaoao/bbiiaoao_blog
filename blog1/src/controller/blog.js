@@ -15,31 +15,58 @@ const getList = (author, kerword) => {
 }
 
 const getDetail = (id) => {
-    const sql=`select * from blogs where id='${id}'`;
-    console.log(12312312312312);
-    return exec(sql).then(rows=>{
+    const sql = `select * from blogs where id='${id}'`;
+    return exec(sql).then(rows => {
         console.log(rows);
-        console.log(1111);
         return rows[0];
     })
 }
 
 const newBlog = (blogData = {}) => {
     //blogData 是一个博客对象，包含 title content属性
-    return {
-        id: 3//表示新建博客，插入到数据库表里面的 id
-    }
+    const title = blogData.title;
+    const content = blogData.content;
+    const author = blogData.author;
+    const createTime = Date.now();
+
+    const sql = `
+    insert into blogs (title,content,createtime,author)
+    values('${title}','${content}',${createTime},'${author}');
+    `
+    return exec(sql).then(insertData => {
+        return {
+            id: insertData.insertId
+        }
+    })
+
 }
 
 const updateBlog = (id, blogData = {}) => {
     //id 就是要更新博客的 id
     //blogData 是一个博客对象，包含 title content属性
-    return true;
+
+    const title = blogData.title;
+    const content = blogData.content;
+
+    const sql = `
+    update blogs set title='${title}', content='${content}' where id=${id}
+       `
+    return exec(sql).then(updateData => {
+        if (updateData.affectedRows > 0) {
+            return true;
+        }
+    });
 }
 
-const delBlog = (id) => {
+const delBlog = (id, author) => {
     //id 就是要删除博客的id
-    return true;
+    const sql = `delete from blogs where id='${id}' and author='${author}';`
+    return exec(sql).then(deleteData => {
+        if (deleteData.affectedRows > 0) {
+            return true;
+        }
+        return false;
+    });
 }
 
 module.exports = {
