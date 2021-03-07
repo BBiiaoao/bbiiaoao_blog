@@ -20,7 +20,7 @@ const handleBlogRouter = (req, res) => {
         // return new SuccessModel(listData);
         const result = getList(author, keyword);
         result.then(listData => {
-            console.log(new SuccessModel(listData));
+            new SuccessModel(listData);
         })
         return result.then(listData => {
             return new SuccessModel(listData);
@@ -33,7 +33,6 @@ const handleBlogRouter = (req, res) => {
         // return new SuccessModel(data);
         const result = getDetail(id);
         return result.then(data => {
-            console.log(data);
             return new SuccessModel(data);
         })
     }

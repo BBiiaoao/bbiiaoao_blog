@@ -17,7 +17,6 @@ const getList = (author, kerword) => {
 const getDetail = (id) => {
     const sql = `select * from blogs where id='${id}'`;
     return exec(sql).then(rows => {
-        console.log(rows);
         return rows[0];
     })
 }
