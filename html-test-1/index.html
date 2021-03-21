@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+</head>
+<style type="text/css">
+.blog{
+    list-style: none;
+    border: 1px solid #000;
+    /* border-bottom: 1px solid #000; */
+    margin-top: 50px;
+    box-sizing: border-box;
+}
+</style>
+<body>
+    <div id="title">
+        <h3>博客首页</h3>
+    </div>
+    <div id="div1">
+     <ul class="blog_container">
+         <li class="blog">
+            <div>
+                <div class="blog_title">12</div>
+                <div class="blog_content">1231</div>
+                <div class="blog_author">123</div>
+            </div>
+         </li>
+     </ul>
+    </div>
+
+</body>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log(111);
+        $.get("http://localhost:8080/api/blog/list",
+            function (result) {
+                result.data.forEach((element,index) => {
+                    console.log(element);
+                    $(".blog_container").append(`<li class='blog'><div><div class='blog_title'>${element.title}</div><div class='blog_content'>${element.content}</div><div class='blog_author'>${element.author}</div></div></li>`)
+                });
+            });
+    })
+</script>
+
+</html>
