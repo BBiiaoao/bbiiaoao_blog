@@ -1,5 +1,5 @@
-config
 node_modules
 .vscode
 dist
 blog1/src/conf/db.js
+blog1/src/conf/key.js
