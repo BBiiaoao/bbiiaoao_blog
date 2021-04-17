@@ -28,9 +28,9 @@ const handleBlogRouter = (req, res) => {
         // const listData = getList(author, keyword);
         // return new SuccessModel(listData);
         const result = getList(author, keyword);
-        result.then(listData => {
-            new SuccessModel(listData);
-        })
+        // result.then(listData => {
+        //     new SuccessModel(listData);
+        // })
         return result.then(listData => {
             return new SuccessModel(listData);
         })//等于 then(data)
