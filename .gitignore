@@ -3,3 +3,6 @@ node_modules
 dist
 blog1/src/conf/db.js
 blog1/src/conf/key.js
+blog-express/src/conf/key.js
+blog-express/logs
+blog1/logs
