@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var fs = require('fs');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const session = require('express-session');
@@ -17,8 +18,24 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+const ENV = process.env.NODE_ENV;
+if (ENV !== 'production') {
+  //开发环境 / 测试环境
+  app.use(logger('dev'));
+}
+else {
+  //线上环境
+  const logFileName = path.join(__dirname, 'logs', 'access.log');
+  const writeStream = fs.createWriteStream(logFileName, {
+    flags: 'a'
+  });
+  app.use(logger('combined', {
+    stream: writeStream
+  }))
+}
 //app.use() 第一个参数无具体路径，则所有请求都经过此中间件
-app.use(logger('dev'));
+
+
 
 //基于body-parser，解析 post 数据
 app.use(express.json());
